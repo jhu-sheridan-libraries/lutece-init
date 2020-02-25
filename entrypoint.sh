@@ -63,6 +63,18 @@ DB_PASS=${fileValue}
 get_file_value ${MYSQL_ROOT_PASSWORD_FILE} ${MYSQL_ROOT_PASSWORD}
 DB_ROOT_PASS=${fileValue}
 
+get_file_value ${MAIL_HOST_FILE} ${MAIL_HOST}
+MAIL_HOST=${fileValue}
+
+get_file_value ${MAIL_PORT_FILE} ${MAIL_PORT}
+MAIL_PORT=${fileValue}
+
+get_file_value ${MAIL_USER_FILE} ${MAIL_USER}
+MAIL_USER=${fileValue}
+
+get_file_value ${MAIL_PASS_FILE} ${MAIL_PASS}
+MAIL_PASS=${fileValue}
+
 # Lutece war must be modified before being deployed with secret config values.
 # Only modify and deploy war if needed.
 
