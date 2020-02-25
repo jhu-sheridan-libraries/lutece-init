@@ -41,10 +41,10 @@ init_db() {
 
 	cd ${modifiedwardir}/WEB-INF/sql && ant
 
-	if [ -f /lutece.sql ]
+	if [ -f ${sqlinitfile} ]
 	then
-	    echo "Loading /lutece.sql"
-	    mysql -u ${DB_USER} -p${DB_PASS} -h ${DB_HOST} ${DB_NAME} < /lutece.sql
+	    echo "Loading ${sqlinitfile}"
+	    mysql -u ${DB_USER} -p${DB_PASS} -h ${DB_HOST} ${DB_NAME} < ${sqlinitfile}
 	fi
     fi
 }
@@ -66,11 +66,13 @@ DB_ROOT_PASS=${fileValue}
 # Lutece war must be modified before being deployed with secret config values.
 # Only modify and deploy war if needed.
 
-sourcewar=/lutece.war
+sourcewar=/data/lutece.war
+sqlinitfile=/data/lutece.sql
 deploywar=/webapps/ROOT.war
 deploywardir=/webapps/ROOT
 extractdir=/lutece
 dbconfigfile=${extractdir}/WEB-INF/conf/db.properties
+configfile=${extractdir}/WEB-INF/conf/config.properties
 
 # Replace strings in a given file
 # Usage: rplfile KEY VALUE FILE
@@ -90,6 +92,11 @@ then
     rplfile "#DB_USER#" "${DB_USER}" ${dbconfigfile}
     rplfile "#DB_PASS#" "${DB_PASS}" ${dbconfigfile}
     rplfile "#DB_HOST#" "${DB_HOST}" ${dbconfigfile}
+
+    rplfile "#MAIL_HOST#" "${MAIL_HOST}" ${configfile}
+    rplfile "#MAIL_PORT#" "${MAIL_PORT}" ${configfile}
+    rplfile "#MAIL_USER#" "${MAIL_USER}" ${configfile}
+    rplfile "#MAIL_PASS#" "${MAIL_PASS}" ${configfile}
 
     init_db ${extractdir}
 

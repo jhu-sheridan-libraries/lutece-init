@@ -21,6 +21,6 @@ A complicating factor is that lutece can only be configured by modifying an inte
 
 # Run 
 
-A Lutece site war must be made available to lutece-init as `/lutece.war`. A MySQL container must be started configured using the variables above.
+A Lutece site war must be made available to lutece-init as `/data/lutece.war`. A MySQL container must be started configured using the variables above.
 
-The lutece-init container will configure lutece.war by producing a modified version of the war as `/webapps/lutece.war`. (Another container is expected to deploy the modified war.) The modified war is only updated if the lutece.war is newer. The lutece-init container will create and intialize the database if needed and exit. For custom initialization, you can optionally provide a `/lutece.sql` database dump file to the container which will be executed only if `MYSQL_DATABASE` does not exist.
+The lutece-init container will configure lutece.war by producing a modified version of the war as `/webapps/lutece.war`. (Another container is expected to deploy the modified war.) The modified war is only updated if the lutece.war is newer. The lutece-init container will create and intialize the database if needed and exit. For custom initialization, you can optionally provide a `/data/lutece.sql` database dump file to the container which will be executed only if `MYSQL_DATABASE` does not exist.
