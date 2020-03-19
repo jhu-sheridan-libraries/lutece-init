@@ -2,6 +2,6 @@ version: '2'
 
 services:
     lutece-init:
-      image: jhulibraries/lutece-init:0.4
+      image: jhulibraries/lutece-init:0.6
       build: ./
       container_name: lutece-init
