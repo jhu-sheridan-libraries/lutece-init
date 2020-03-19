@@ -37,14 +37,15 @@ init_db() {
     then
 	echo "Database already initialized"
     else
-	echo "Initializing database..."
-
-	cd ${modifiedwardir}/WEB-INF/sql && ant
+	echo "Database is empty"
 
 	if [ -f ${sqlinitfile} ]
 	then
-	    echo "Loading ${sqlinitfile}"
+	    echo "Loading database from dump"
 	    mysql -u ${DB_USER} -p${DB_PASS} -h ${DB_HOST} ${DB_NAME} < ${sqlinitfile}
+	else
+	    echo "Initiliazing new site database"	    
+	    cd ${modifiedwardir}/WEB-INF/sql && ant	    
 	fi
     fi
 }
@@ -93,9 +94,15 @@ rplfile() {
     LANG=en_US.UTF-8 rpl -q "$1" "$2" "$3" > /dev/null 2>&1
 }
 
+if [ ! -f ${sourcewar} ]
+then
+    echo "Error: No source war ${sourcewar} found."
+    exit 1
+fi
+   
 if [ ! -f ${deploywar} ] || [ ${sourcewar} -nt ${deploywar} ]
 then
-    echo "Modifying war"
+    echo "Modifying source war to create deployment war"
 
     rm -f ${deploywar}
     unzip -q ${sourcewar} -d ${extractdir}
@@ -117,6 +124,6 @@ then
     echo "Deploying modified war"
     mv /tmp.war ${deploywar}
 else
-    echo "No war modification needed"
+    echo "No changes to deployed war needed."
     init_db ${deploywardir}
 fi
