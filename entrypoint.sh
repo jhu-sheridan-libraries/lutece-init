@@ -61,9 +61,6 @@ DB_USER=${fileValue}
 get_file_value ${MYSQL_PASSWORD_FILE} ${MYSQL_PASSWORD}
 DB_PASS=${fileValue}
 
-get_file_value ${MYSQL_ROOT_PASSWORD_FILE} ${MYSQL_ROOT_PASSWORD}
-DB_ROOT_PASS=${fileValue}
-
 get_file_value ${MAIL_HOST_FILE} ${MAIL_HOST}
 MAIL_HOST=${fileValue}
 
@@ -81,8 +78,8 @@ MAIL_PASS=${fileValue}
 
 sourcewar=/data/lutece.war
 sqlinitfile=/data/lutece.sql
-deploywar=/webapps/ROOT.war
-deploywardir=/webapps/ROOT
+deploywar=/usr/local/tomcat/webapps/ROOT.war
+deploywardir=/usr/local/tomcat/webapps/ROOT
 extractdir=/lutece
 dbconfigfile=${extractdir}/WEB-INF/conf/db.properties
 configfile=${extractdir}/WEB-INF/conf/config.properties
@@ -127,3 +124,8 @@ else
     echo "No changes to deployed war needed."
     init_db ${deploywardir}
 fi
+
+
+# Start tomcat
+
+catalina.sh run
