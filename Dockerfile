@@ -1,8 +1,9 @@
-FROM debian:stretch as builder
+FROM tomcat:9
 
-# Install ant, unzip, java, rpl, and a mysql client
-RUN apt-get update && apt-get dist-upgrade -y && \
-    apt-get install -y mysql-client unzip default-jdk ant rpl --no-install-recommends
+RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y default-mysql-client ant rpl --no-install-recommends && apt-get clean
 
+COPY data /data
 COPY entrypoint.sh /entrypoint.sh
+
 ENTRYPOINT ["sh", "/entrypoint.sh"]
+
