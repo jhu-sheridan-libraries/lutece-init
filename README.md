@@ -29,6 +29,14 @@ Lutece applications are configured by modifying files internal to the war. In or
 
 In addition, if the configured database appears to be empty, it will be initialized. Database initialization can take two paths. If the file `/data/lutece.sql` exists, it will be loaded as is into the database. The database dump must have come from a running site. If the file does not exist, the default Lutece database intialization for a new site is run.
 
+Due to the version of the mysql client used by the container, the mysql server must support the mysql native password plugin.
+
+For mysql 8:
+```
+mysqld --default-authentication-plugin=mysql_native_password --skip-mysqlx
+```
+
+
 # Building images
 
 ## Make a lutece-init release to use in development
