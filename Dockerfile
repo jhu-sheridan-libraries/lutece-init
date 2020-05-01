@@ -1,4 +1,4 @@
-FROM tomcat:9
+FROM tomcat:9-jdk8
 
 RUN apt-get update && apt-get dist-upgrade -y && apt-get install -y default-mysql-client ant rpl --no-install-recommends && apt-get clean
 
