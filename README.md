@@ -70,5 +70,5 @@ mail.password=#MAIL_PASS#
 Then build the Lutece site application and copy the war into `data/lutece.war`.
 
 ```
-docker build -t jhulibraries/stfrancis-site:VERSION .
+docker build --network=host -t jhulibraries/stfrancis-site:VERSION .
 ```
