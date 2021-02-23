@@ -72,3 +72,13 @@ Then build the Lutece site application and copy the war into `data/lutece.war`.
 ```
 docker build --network=host -t ghcr.io/jhu-sheridan-libraries/stfrancis-site:VERSION .
 ```
+
+The site image could also be built off of an existing lutece-init image.
+Put the `lutece.war` and optional `lutece.sql` in the `data/` directory.
+Use a Dockerfile like:
+
+```
+FROM ghcr.io/jhu-sheridan-libraries/lutece-init:0.7
+
+COPY data /data
+```
