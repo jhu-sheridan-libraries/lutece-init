@@ -52,25 +52,25 @@ init_db() {
 
 # Grab configuration values possibly stored in files
 
-get_file_value ${MYSQL_DATABASE_FILE} ${MYSQL_DATABASE}
+get_file_value "${MYSQL_DATABASE_FILE}" "${MYSQL_DATABASE}"
 DB_NAME=${fileValue}
 
-get_file_value ${MYSQL_USER_FILE} ${MYSQL_USER}
+get_file_value "${MYSQL_USER_FILE}" "${MYSQL_USER}"
 DB_USER=${fileValue}
 
-get_file_value ${MYSQL_PASSWORD_FILE} ${MYSQL_PASSWORD}
+get_file_value "${MYSQL_PASSWORD_FILE}" "${MYSQL_PASSWORD}"
 DB_PASS=${fileValue}
 
-get_file_value ${MAIL_HOST_FILE} ${MAIL_HOST}
+get_file_value "${MAIL_HOST_FILE}" "${MAIL_HOST}"
 MAIL_HOST=${fileValue}
 
-get_file_value ${MAIL_PORT_FILE} ${MAIL_PORT}
+get_file_value "${MAIL_PORT_FILE}" "${MAIL_PORT}"
 MAIL_PORT=${fileValue}
 
-get_file_value ${MAIL_USER_FILE} ${MAIL_USER}
+get_file_value "${MAIL_USER_FILE}" "${MAIL_USER}"
 MAIL_USER=${fileValue}
 
-get_file_value ${MAIL_PASS_FILE} ${MAIL_PASS}
+get_file_value "${MAIL_PASS_FILE}" "${MAIL_PASS}"
 MAIL_PASS=${fileValue}
 
 # Lutece war must be modified before being deployed with secret config values.
